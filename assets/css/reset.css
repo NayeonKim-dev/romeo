@@ -1,0 +1,59 @@
+/* 초기화 */
+*{margin:0;padding:0;font:inherit;color:inherit;}
+*, :after, :before {box-sizing:border-box;flex-shrink:0;}
+html, body {height:100%;}
+img, picture, video, canvas, svg {display: block; max-width:100%;}
+button {background:none;border:0;cursor:pointer;}
+a {text-decoration:none}
+table {border-collapse:collapse;border-spacing:0}
+ul{list-style: none;}
+
+/* 세팅 */
+
+html, body {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: -.01em;
+    font-family: gothamR,sans-serif;
+}
+
+.headline {
+    font-size: 44px;
+    line-height: 1.1;
+    text-transform: uppercase;
+    font-weight: 900;
+    font-family: gothamB, sans-serif;
+}
+
+.title {
+    font-family: gothamB, sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.desc {
+    font-family: gothamR, sans-serif;
+}
+
+
+button {
+    appearance: none;
+    background: 0 0;
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+

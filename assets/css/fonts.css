@@ -1,0 +1,19 @@
+@font-face {
+    font-family: gothamT;
+    src: url(../fonts/Gotham-Thin.woff2);
+}
+
+@font-face {
+    font-family: gothamR;
+    src: url(../fonts/Gotham-Book.woff2);
+}
+
+@font-face {
+    font-family: gothamB;
+    src: url(../fonts/Gotham-Black.woff2);
+}
+
+@font-face {
+    font-family: circular;
+    src: url(../fonts/CircularXXSub-BookSubset.woff2);
+}

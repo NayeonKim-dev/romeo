@@ -1,0 +1,55 @@
+.no-scroll {
+    overflow: hidden;
+}
+
+.blind {
+    position: absolute;
+    overflow: hidden;
+    width: 1px;
+    height: 1px;
+    clip: rect(0,0,0,0);
+}
+
+.layout-inner {
+    padding: 0 3.8vw;
+}
+
+.marquee-inner {
+    display: flex;
+}
+
+.sc-intro, .sc-desc {
+    background: #fff;
+}
+
+
+.sc-intro .headline, .sc-intro .desc-group,
+.sc-intro .marquee-box, .sc-desc .text-area {
+    background: #fff;
+    padding-block: 20px;
+}
+
+.sc-intro.on .board-inner::before,
+.sc-desc.on .board-inner::before {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    animation: line-down 3s ease-in-out forwards;
+    animation-delay: 0.2s;
+    background-position: 35% top,65% top;
+    background-image: linear-gradient(#ABAAA5,#ABAAA5),linear-gradient(#ABAAA5,#ABAAA5);
+    background-size: 1px 0,1px 0;
+}
+
+/* sc-intro, sc-desc 공통 border keyframe */
+@keyframes line-down {
+    to {
+        background-size: 1px 100%
+    }
+}
+
