@@ -7,9 +7,8 @@ $(function(){
     // 메뉴버튼 중복 클릭 체크
     let clicked = 0;
 
-
     // header default setting --------------------------------------
-    // 초기 설정
+    // header logo 디자인 상태 조절 함수
     function setHeaderState() {
         if (min1024.matches) {
                 $('.header').removeClass('fix on');
@@ -18,19 +17,19 @@ $(function(){
         }
     };
 
-    // 페이지 로딩 시와 브라우저 크기 변경 시 초기 설정 적용
+    // 페이지 로딩 시와 브라우저 크기 변경 시 초기 설정 적용 --------------------------------------------------
+    // 브라우저 초기 로딩
     $(document).ready(function() {
+        //header logo 디자인 상태 조절 함수 호출
         setHeaderState();
-    
     });
 
     $(window).resize(function() {
+        //header logo 디자인 상태 조절 함수 호출
         setHeaderState();
-      
-
     });
 
-    // btn.menu - sub menu open
+    // btn.menu - sub menu open ---------------------------------------------------------------------------
     // sub menu gsap animation timeline
     let hdmenu = gsap.timeline({paused: true});
         hdmenu.fromTo(".menu-area", {y: "100%", autoAlpha: 0}, {y: 0, autoAlpha: 1, duration: 0.5, ease: "power2.inOut"});
@@ -41,11 +40,10 @@ $(function(){
     // 메뉴 조건 체크 변수
     let menuClose = true;
 
-    // 재사용을 위한 함수
+    // 서브 메뉴 오픈 재사용을 위한 함수
     function menu1023(){
         // header position fixed 체크
         let headerFix = $('.header').hasClass('fix');
-        $(this).toggleClass('on');
        
         if (menuClose) {
             // 스크롤 바 사라짐
@@ -63,8 +61,7 @@ $(function(){
             // 클릭한 요소와 다른 버튼이 모두 클래스명 on을 가지고 있다면 메뉴 중복 클릭 증가
             if (otherElements.hasClass('on') && clickedTarget.hasClass('on')) {
                 clicked++;
-            }
-
+            };
         } else {
             // 스크롤 바 다시 나타남
             $('body').removeClass('no-scroll');
@@ -81,12 +78,12 @@ $(function(){
                 }
             });
             menuClose = true;
-        }
-        }
+        };
+    };
 
 
-    // header scroll ----------------------------------------------
-    // 이전 스크롤 값 초기화
+    // 스크롤 시 header 디자인, 애니메이션 조절 함수 ------------------------------------------------
+    // 이전 스크롤 값 초기화 변수
     let prevScroll = $(window).scrollTop(); 
 
     $(window).scroll(function(){
@@ -99,7 +96,6 @@ $(function(){
                 // 스크롤이 올라가면 fixed 추가, header 내려감
                 $('.header').removeClass('ani').addClass('fix on');
             };
-
         } else {
             if (max1023.matches) {
                 $('.header').removeClass('ani').addClass('fix on');
@@ -124,7 +120,7 @@ $(function(){
         };
     });
 
-    // max1023에서 스크롤 160이상 bg color 변경
+    // max1023에서 스크롤 160이상 header bg color 변경
     $(window).scroll(function(){
         let maxScroll = $(this).scrollTop();
         if (max1023.matches && maxScroll >= 0 && maxScroll < 160) {
@@ -132,25 +128,27 @@ $(function(){
         } else {
             // 스크롤 값 160 미만 시 배경색 투명으로 변경
             $('.header').css('background', '#000'); 
-        }
+        };
     });
     
 
-
-    // btn.dest click ---------------------------------------------
+    // btn.dest click 이벤트 -----------------------------------------------------------------
     $('.btn.hdest').click(function(e){
         e.stopPropagation();
         $(this).toggleClass('on');
+
+        // 통합된 hdest, lang sub menu on
         if(max1023.matches) {
-            // 통합된 hdest, lang sub menu on
+            // max1023시 서브메뉴 padding 변경
             if ($('.btn.hdest').hasClass('on'))  {
                 setTimeout(function(){
                     $('.header .menu-area').removeClass('max1023');
-                }, 5000)
+                }, 5000);
             } else {
                 $('.header .menu-area').addClass('max1023');
-            }
+            };
 
+            // 서브 메뉴 오픈 함수 호출
             menu1023.call(this);
         };
 
@@ -162,7 +160,7 @@ $(function(){
             //header fixed인 경우 on유지
             if($('.header').hasClass('fix')) {
                 $('.header').addClass('on');
-            }
+            };
             
             // 창이 열리면 스크롤 사라짐
             if ($(this).hasClass('on')) {
@@ -173,8 +171,7 @@ $(function(){
                 // 클릭한 요소와 다른 버튼이 모두 클래스명 on을 가지고 있다면 메뉴 중복 클릭 증가
                 if (otherElements.hasClass('on') && clickedTarget.hasClass('on')) {
                     clicked++;
-                } 
-            
+                }; 
             } else {
                 $('body').removeClass('no-scroll');
                 // 메뉴가 마지막 1개가 남았다면 header on 삭제
@@ -183,78 +180,74 @@ $(function(){
                 } else {
                     // 메뉴가 마지막 1개가 아니었다면 메뉴 중복 클릭 증감
                     clicked--;
-                }
-            }
-        }
-    })
+                };
+            };
+        };
+    });
 
-    // hdest 밖의 요소를 클릭했을 때  close
+    // hdest 밖의 요소를 클릭했을 때 서브 메뉴 close ---------------------------------------------------
     $(document).mouseup(function (e){
         e.stopPropagation();
-            let headerFix = $('.header').hasClass('fix');
-            let headerEl = !$('.btn.hdest, .btn.menu, .btn.mark').is(e.target);
-            let onlyHeader = $('.btn.hdest').hasClass('on');
-
-            // header가 fixed가 아닐 때
-            if (headerEl && onlyHeader && !headerFix) {
-                $('body').removeClass('no-scroll');
-                $('.btn.hdest').removeClass('on');
-                $('.hdest-box').fadeOut(500);
-
-                // 메뉴 중복 체크 0이면 header class on 제거
-                if (clicked === 0) {
-                    $('.header').removeClass('on');
-                } else {
-                    // 메뉴 중복 체크 0아니면 값 증감
-                    clicked--;
-                }
-
-            // header가 fixed일 때    
-            } else if(headerEl && onlyHeader && headerFix) {
-                $('.header').addClass('on');
-                $('.btn.hdest').removeClass('on');
-                $('.hdest-box').fadeOut(500);
+        let headerFix = $('.header').hasClass('fix');
+        let headerEl = !$('.btn.hdest, .btn.menu, .btn.mark').is(e.target);
+        let onlyHeader = $('.btn.hdest').hasClass('on');
+        // header가 fixed가 아닐 때
+        if (headerEl && onlyHeader && !headerFix) {
+            $('body').removeClass('no-scroll');
+            $('.btn.hdest').removeClass('on');
+            $('.hdest-box').fadeOut(500);
+            // 메뉴 중복 체크 0이면 header class on 제거
+            if (clicked === 0) {
+                $('.header').removeClass('on');
             } else {
-                return false;
-            }
-      });
-
+                // 메뉴 중복 체크 0아니면 값 증감
+                clicked--;
+            };
+        // header가 fixed일 때    
+        } else if(headerEl && onlyHeader && headerFix) {
+            $('.header').addClass('on');
+            $('.btn.hdest').removeClass('on');
+            $('.hdest-box').fadeOut(500);
+        } else {
+            return false;
+        };
+    });
     
-
+    // btn.lang 서브 메뉴 리스트 click 이벤트 ---------------------------------------------------
     $('.lang1023-item').click(function(){
+        // 텍스트 색 변경
         $(this).addClass('on').siblings().removeClass('on');
-    })
+    });
 
-    // btn.lang click
+    // btn.lang click 이벤트 ---------------------------------------------------
     $('.btn.lang').click(function(e){
         // 클릭 이벤트 캡쳐링 방지
         e.stopPropagation();
         $(this).toggleClass('on');
         $('.lang-box').slideToggle(100);
-    })
+    });
 
-    
-
-    // btn.menu click
+    // btn.menu click 이벤트 ------------------------------------
     $('.btn.menu').click(function(e){
         // 클릭 이벤트 캡쳐링 방지
-        e.stopPropagation()
+        e.stopPropagation();
         $('.hamburger-group').toggleClass('on');
 
         menu1023.call(this);
     });
     
-    // btn.mark - sub menu open
+    // btn.mark - sub menu open -----------------------------------
     // book-area animation timeline
     let bookmenu = gsap.timeline({paused: true});
         bookmenu.fromTo(".book-area", {x: "100%", autoAlpha: 0}, {x: 0, autoAlpha: 1, duration: 0.8, ease: "power2.inOut"});
 
+    // 서브 메뉴 오픈 조건 체크 변수 
     let bookBtn = true;
 
     // btn.mark click
     $('.btn.mark, .book-area .close').click(function(e){
         // 클릭 이벤트 캡쳐링 방지
-        e.stopPropagation()
+        e.stopPropagation();
         $('.book-area').toggleClass('on');
         if(min1024.matches) {
             $(this).toggleClass('on');
@@ -278,9 +271,8 @@ $(function(){
                 // 클릭한 요소와 다른 버튼이 모두 클래스명 on을 가지고 있다면 메뉴 중복 클릭 증가
                 if (otherElements.hasClass('on') && clickedTarget.hasClass('on')) {
                     clicked++;
-                }
-            }
-
+                };
+            };
         } else {
             // 스크롤 바 다시 나타남
             $('body').removeClass('no-scroll');
@@ -293,20 +285,21 @@ $(function(){
                     $('.header').removeClass('on');
                 } else {
                     clicked--;
-                }
-            }
-        }
+                };
+            };
+        };
     });
 
-    //book-area tab click
+    //book-area tab click 이벤트 ---------------------------------------
     $('.book-area .tab-item').click(function(){
         let tabcatag = $(this).data();
         $(this).addClass('on').siblings().removeClass('on');
         $('.' + tabcatag['tab']).addClass('on').siblings().removeClass('on');
-    })
+    });
 
     // sc-visual ===================================================================
     if (min1024.matches) {
+        // sc-visual pin gsap
         gsap.registerPlugin(ScrollTrigger);
             let visScroll = gsap.timeline({
                 scrollTrigger: {
@@ -395,7 +388,7 @@ $(function(){
         gsap.to(marqBottom,{
             x: `${progress * 100 - 140}%`});
         },
-      });
+    });
 
     // sc-desc ===================================================================
     // sc-desc fade animation
@@ -440,6 +433,5 @@ $(function(){
         $(this).toggleClass('on');
         $('.cookie-area .detail-box').slideToggle(50);
     });
-
-})
+});
 

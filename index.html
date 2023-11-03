@@ -7,13 +7,13 @@
     <!-- favicon -->
     <link rel="shortcut icon" href="./assets/images/ico_favicon.png" type="image/x-icon">
     <!-- css -->
-    <link rel="stylesheet" href="../romeo/assets/css/layout.css">
-    <link rel="stylesheet" href="../romeo/assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/layout.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
     <!-- js -->
-    <script src="../romeo/assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
+    <script src="./assets/js/code.jquery.com_jquery-3.7.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="../romeo/assets/js/script.js"></script>
+    <script src="./assets/js/script.js"></script>
     
 </head>
 <body>
@@ -21,13 +21,13 @@
             <div class="flex-area">
                 <h1 class="logo"><span class="blind">romeo</span></h1>
                 <button class="btn hdest">
-                    <span class="mn1300">DESTINATIONS</span>
-                    <span class="mx1023-hamb">
+                    <span class="max1023-hamb">
                         <span></span>
                         <span></span>
                         <span></span>
                         <span></span>
                     </span>
+                    <span class="min1300">DESTINATIONS</span>
                 </button>
                 <div class="util-area">
                     <button class="btn lang">EN</button>
@@ -79,12 +79,12 @@
                     <li class="tab-item" data-tab="rest-box"><a href="#none">RESTAURANT</a></li>
                 </ul>
                 <div class="accom-box on">
-                    <h3 class="title">BOOK ROMEO DIRECT</h3>
-                    <p class="desc">
-                        Dedicated Welcome Amenities, Free Room upgrade Upon availability, SPA Aqva Journey Included
-                    </p>
-                    <form action="#none">
-                        <select name="hotel">
+                    <form action="#none"></form>
+                        <label for="booking-hotel" class="title">BOOK ROMEO DIRECT</label>
+                        <p class="desc">
+                            Dedicated Welcome Amenities, Free Room upgrade Upon availability, SPA Aqva Journey Included
+                        </p>
+                        <select name="hotel" id="booking-hotel">
                             <option value="" disabled>SELECT DESTINATION</option>
                             <option value="" selected>ROMEO NAPOLI</option>
                         </select>
@@ -92,10 +92,10 @@
                     </form>
                 </div>
                 <div class="rest-box">
-                    <h3 class="title">SELECT A RESTAURANT</h3>
                     <form action="#none">
+                        <label for="booking-rest" class="title">SELECT A RESTAURANT</label>
                         <div class="selc-area">
-                            <select name="hotel">
+                            <select name="hotel" id="booking-rest">
                                 <option value="" disabled>SELECT DESTINATION</option>
                                 <option value="" selected>ROMEO NAPOLI</option>
                             </select>
@@ -167,13 +167,13 @@
                             <p>Home to Uniqueness <strong>Home to Uniqueness</strong></p>
                         </div>
                     </div>
-                    <button class="down-btn"></button>
+                    <button class="down-btn"><span class="blind">스크롤 다운 버튼</span></button>
                 </div>
             </section>
             <section class="sc-dest">
                 <h2 class="headline">OUR DESTINATIONS</h2>
                 <div class="layout-inner">
-                <ul class="dest-list">
+                    <ul class="dest-list">
                         <li class="dest-item">
                             <a href="#none">
                                 <picture>
@@ -425,9 +425,9 @@
                 </div>
                 <div class="info-area">
                     <div class="letter-box">
-                        <h3 class="title">ROMEO NEWSLETTER</h3>
                         <form action="#none">
-                            <input type="email" placeholder="YOUR EMAIL">
+                            <label for="footer-email" class="title">ROMEO NEWSLETTER</label>
+                            <input type="email" id="footer-email" placeholder="YOUR EMAIL">
                             <button type="submit"><span class="blind">메일 전송버튼</span></button>
                         </form>
                     </div>

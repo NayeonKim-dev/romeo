@@ -101,15 +101,12 @@
 }
 
 .sc-dest .dest-list {
-    border-block: 1px solid #5d5d5d;
-}
-
-.sc-dest .dest-list .layout-inner {
     display: flex;
     justify-content: center;
     gap: 30px;
     width: 100%;
-    padding: 50px 3.8vw;;
+    padding: 50px 3.8vw;
+    border-block: 1px solid #5d5d5d;
 }
 
 .sc-dest .dest-list .dest-item {
@@ -702,7 +699,7 @@
         font-size: var(--dest-hd-font);
     }
 
-    .sc-dest .dest-list .layout-inner {
+    .sc-dest .dest-list {
         flex-direction: var(--dest-direction);
         gap: var(--dest-gap);
         padding: 30px 5.2vw;
@@ -876,7 +873,7 @@
         font-size: var(--dest-hd-font);
     }
 
-    .sc-dest .dest-list .layout-inner {
+    .sc-dest .dest-list {
         flex-direction: var(--dest-direction);
         gap: var(--dest-gap);
         padding: 30px 19.5vw;
