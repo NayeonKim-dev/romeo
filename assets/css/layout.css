@@ -732,7 +732,7 @@
         font-size: 30px;
     }
 
-    .header .menu-area .menu-box {
+    .header .menu-area .submenu-box {
         margin-top: var(--hd-menubox-top);
         font-size: var(--hd-menubox-font);
         padding: 0 5.2vw;
@@ -847,7 +847,7 @@
         padding: 0 19.5vw 35px 19.5vw;
     }
 
-    .header .menu-area .menu-box {
+    .header .menu-area .submenu-box {
         margin-top: var(--hd-menubox-top);
         font-size: var(--hd-menubox-font);
         padding: 0 19.5vw;

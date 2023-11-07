@@ -297,27 +297,33 @@ $(function(){
         $('.' + tabcatag['tab']).addClass('on').siblings().removeClass('on');
     });
 
-    // sc-visual ===================================================================
-    if (min1024.matches) {
-        // sc-visual pin gsap
+    // sc-visual ===================================================================   
+    // sc-visual pin gsap : min-width: 1024px에서만 실행
+    let min1024pin = gsap.matchMedia();
+    min1024pin.add("(min-width: 1024px)", () => {
         gsap.registerPlugin(ScrollTrigger);
-            let visScroll = gsap.timeline({
-                scrollTrigger: {
-                    trigger: ".sc-visual",
-                    pin: true,   
-                    start: "top top",
-                    end: "+=500",
-                    scrub: 1,
-                  }
-        });
-        visScroll.fromTo(".sc-visual .video-area", {transform: "scale(0.7, 0.6)"}, {transform: "scale(1.5, 1.4)"});
+        let visScroll = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".sc-visual",
+                pin: true,   
+                start: "top top",
+                end: "+=500",
+                scrub: 1,
+        }
+    });
 
-        // down-btn scroll
-        $('.sc-visual .down-btn').click(function(){
-            $( 'html, body' ).stop().animate({scrollTop : '676'}, 50);
-        });
-    };
+    visScroll.fromTo(".sc-visual .video-area", {transform: "scale(0.5, 0.5)"}, {transform: "scale(1)"});
+    
+    });
+    
 
+    // down-btn scroll
+    $('.sc-visual .down-btn').click(function(){
+        $( 'html, body' ).stop().animate({scrollTop : '676'}, 50);
+    });
+    
+        
+    
     // sc-dest ===================================================================
     // dest-list hover
     $('.sc-dest .dest-item').mouseover(function(){
